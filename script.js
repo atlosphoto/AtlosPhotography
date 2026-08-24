@@ -80,3 +80,37 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.key === 'Escape' && !lightbox.hidden) closeLightbox();
     });
 });
+    /* --- Lámpara interactiva del hero --- */
+    const lampToggle = document.getElementById('lampToggle');
+    const lampHero = document.querySelector('.lamp-hero');
+
+    if (lampToggle && lampHero) {
+        lampToggle.addEventListener('click', () => {
+            const isLit = lampHero.classList.toggle('is-lit');
+            lampToggle.setAttribute('aria-pressed', String(isLit));
+        });
+    }
+        /* --- Demo reel: autoplay al entrar en vista + botón de sonido --- */
+    const reelVideo = document.getElementById('reelVideo');
+    const reelSoundBtn = document.getElementById('reelSoundBtn');
+
+    if (reelVideo) {
+        const reelObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    reelVideo.play().catch(() => {});
+                } else {
+                    reelVideo.pause();
+                }
+            });
+        }, { threshold: 0.4 });
+
+        reelObserver.observe(reelVideo);
+    }
+
+    if (reelVideo && reelSoundBtn) {
+        reelSoundBtn.addEventListener('click', () => {
+            reelVideo.muted = !reelVideo.muted;
+            reelSoundBtn.setAttribute('aria-pressed', String(!reelVideo.muted));
+        });
+    }

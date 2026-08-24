@@ -29,18 +29,47 @@
         </div>
     </nav>
 
-    <!-- HERO -->
-    <header class="hero" id="top">
-        <div class="rec">
-            <span class="rec-dot"></span>
-            <span class="rec-label">REC</span>
+        <header class="hero" id="top">
+        <div class="lamp-hero">
+
+            <button type="button" class="lamp-toggle" id="lampToggle" aria-pressed="false" aria-label="Encender la lámpara">
+                <svg class="lamp-svg" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="var(--red)" stop-opacity="0.9"/>
+                            <stop offset="100%" stop-color="var(--red)" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+
+                    <circle class="lamp-glow" cx="100" cy="95" r="85"/>
+
+                    <path class="lamp-shade" d="M45 92 Q100 18 155 92 L165 102 L35 102 Z"/>
+                    <ellipse class="lamp-bulb" cx="100" cy="96" rx="14" ry="9"/>
+
+                    <line class="lamp-string" x1="100" y1="102" x2="100" y2="140"/>
+                    <circle class="lamp-pull" cx="100" cy="144" r="5"/>
+
+                    <rect class="lamp-pole" x="95" y="102" width="10" height="118"/>
+                    <rect class="lamp-base" x="58" y="220" width="84" height="14" rx="4"/>
+                </svg>
+            </button>
+
+            <div class="lamp-content" id="lampContent">
+                <div class="rec">
+                    <span class="rec-dot"></span>
+                    <span class="rec-label">REC</span>
+                </div>
+
+                <h1 class="hero-title">ATLOS<span>PHOTO</span></h1>
+
+                <p class="hero-sub">Estudio creativo — fotografía, producción audiovisual y estrategia digital.</p>
+
+                <a href="#escena-03" class="btn-outline">Ver portafolio</a>
+            </div>
+
         </div>
 
-        <h1 class="hero-title">ATLOS<span>PHOTO</span></h1>
-
-        <p class="hero-sub">Estudio creativo — fotografía, producción audiovisual y estrategia digital.</p>
-
-        <a href="#escena-03" class="btn-outline">Ver portafolio</a>
+        <p class="lamp-hint" id="lampHint">Toca la lámpara</p>
 
         <div class="scroll-cue">SCROLL<span>↓</span></div>
     </header>
@@ -83,6 +112,35 @@
                 <span class="frame-number">05 · MARKETING</span>
                 <p class="frame-text">Convertimos atención en oportunidades reales para tu negocio.</p>
             </article>
+        </div>
+    </section>
+        <!-- ESCENA — DEMO REEL -->
+    <section class="reel-section" id="escena-reel">
+        <span class="section-eyebrow">ESCENA — DEMO REEL 2026</span>
+
+        <div class="reel-frame">
+            <video
+                id="reelVideo"
+                class="reel-video"
+                src="assets/video/demo-reel-atlosphoto.mp4"
+                muted
+                loop
+                playsinline
+                preload="metadata">
+            </video>
+
+            <button type="button" class="reel-sound-btn" id="reelSoundBtn" aria-label="Activar sonido" aria-pressed="false">
+                <svg class="icon-muted" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                    <line x1="23" y1="9" x2="17" y2="15"/>
+                    <line x1="17" y1="9" x2="23" y2="15"/>
+                </svg>
+                <svg class="icon-sound" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                    <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+                    <path d="M18.5 5.5a9 9 0 0 1 0 13"/>
+                </svg>
+            </button>
         </div>
     </section>
 

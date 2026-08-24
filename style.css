@@ -98,6 +98,173 @@ section, footer {
     position: relative;
     border-bottom: 1px solid var(--gray-line);
 }
+/* ---- LAMP INTERACTION ---- */
+
+.lamp-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.lamp-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: clamp(140px, 20vw, 200px);
+    flex-shrink: 0;
+}
+
+.lamp-toggle:focus-visible {
+    outline: 1px solid var(--red);
+    outline-offset: 8px;
+}
+
+.lamp-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.lamp-glow {
+    fill: url(#lampGlow);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.lamp-shade {
+    fill: var(--black-soft);
+    stroke: var(--gray);
+    stroke-width: 2.5;
+    transition: fill 0.4s ease, stroke 0.4s ease;
+}
+
+.lamp-bulb {
+    fill: var(--gray-line);
+    transition: fill 0.4s ease;
+}
+
+.lamp-string,
+.lamp-pole,
+.lamp-base {
+    stroke: var(--gray);
+}
+
+.lamp-string {
+    stroke-width: 2;
+    transform-origin: 100px 102px;
+}
+
+.lamp-pole {
+    fill: var(--gray);
+}
+
+.lamp-base {
+    fill: var(--gray);
+}
+
+.lamp-pull {
+    fill: var(--red);
+}
+
+/* Estado encendido */
+.lamp-hero.is-lit .lamp-glow {
+    opacity: 1;
+}
+
+.lamp-hero.is-lit .lamp-shade {
+    fill: var(--black);
+    stroke: var(--white);
+}
+
+.lamp-hero.is-lit .lamp-bulb {
+    fill: var(--red);
+}
+
+.lamp-hero.is-lit .lamp-string {
+    animation: swing 0.6s ease;
+}
+
+@keyframes swing {
+    0% { transform: rotate(0deg); }
+    30% { transform: rotate(14deg); }
+    60% { transform: rotate(-8deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Contenido oculto hasta encender */
+.lamp-content {
+    opacity: 0;
+    transform: translateX(24px);
+    pointer-events: none;
+    transition: opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s;
+    text-align: left;
+    max-width: 26rem;
+}
+
+.lamp-hero.is-lit .lamp-content {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.lamp-content .rec {
+    position: static;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+}
+
+.lamp-content .hero-title {
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+}
+
+.lamp-content .hero-sub {
+    margin: 1.25rem 0 0;
+    text-align: left;
+}
+
+.lamp-hint {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--gray);
+    margin-top: 2rem;
+    transition: opacity 0.4s ease;
+}
+
+.lamp-hero.is-lit ~ .lamp-hint {
+    opacity: 0;
+}
+
+@media (max-width: 640px) {
+    .lamp-hero {
+        flex-direction: column;
+        text-align: center;
+    }
+    .lamp-content {
+        text-align: center;
+        transform: translateY(16px);
+    }
+    .lamp-hero.is-lit .lamp-content {
+        transform: translateY(0);
+    }
+    .lamp-content .hero-title,
+    .lamp-content .hero-sub {
+        text-align: center;
+    }
+    .lamp-content .rec {
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lamp-hero.is-lit .lamp-string {
+        animation: none;
+    }
+}
+
 
 .rec {
     position: absolute;
@@ -455,5 +622,73 @@ section, footer {
     }
     .rec-dot, .scroll-cue span, .whatsapp-ring {
         animation: none;
+    }
+}
+/* ---- DEMO REEL ---- */
+
+.reel-section {
+    border-bottom: 1px solid var(--gray-line);
+    padding-bottom: 4rem;
+}
+
+.reel-frame {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.reel-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: block;
+    background-color: var(--black-soft);
+    border: 1px solid var(--gray-line);
+    object-fit: cover;
+}
+
+.reel-sound-btn {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 2.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(10, 10, 10, 0.7);
+    border: 1px solid var(--gray-line);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.reel-sound-btn:hover,
+.reel-sound-btn:focus-visible {
+    border-color: var(--red);
+    color: var(--red);
+}
+
+.icon-sound {
+    display: none;
+}
+
+.reel-sound-btn[aria-pressed="true"] .icon-muted {
+    display: none;
+}
+
+.reel-sound-btn[aria-pressed="true"] .icon-sound {
+    display: block;
+}
+
+@media (max-width: 640px) {
+    .reel-frame {
+        padding: 0 1.25rem;
+    }
+    .reel-sound-btn {
+        right: 1.75rem;
+        bottom: 1.25rem;
     }
 }
