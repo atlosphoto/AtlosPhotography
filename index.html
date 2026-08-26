@@ -33,7 +33,7 @@
         <div class="lamp-hero">
 
             <button type="button" class="lamp-toggle" id="lampToggle" aria-pressed="false" aria-label="Encender la lámpara">
-                <svg class="lamp-svg" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="lamp-svg" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
                             <stop offset="0%" stop-color="var(--red)" stop-opacity="0.9"/>
@@ -46,11 +46,13 @@
                     <path class="lamp-shade" d="M45 92 Q100 18 155 92 L165 102 L35 102 Z"/>
                     <ellipse class="lamp-bulb" cx="100" cy="96" rx="14" ry="9"/>
 
-                    <line class="lamp-string" x1="100" y1="102" x2="100" y2="140"/>
-                    <circle class="lamp-pull" cx="100" cy="144" r="5"/>
-
                     <rect class="lamp-pole" x="95" y="102" width="10" height="118"/>
                     <rect class="lamp-base" x="58" y="220" width="84" height="14" rx="4"/>
+
+                    <g class="lamp-cord">
+                        <line class="lamp-string" x1="128" y1="99" x2="128" y2="148"/>
+                        <circle class="lamp-pull" cx="128" cy="152" r="5"/>
+                    </g>
                 </svg>
             </button>
 

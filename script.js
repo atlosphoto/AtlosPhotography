@@ -84,8 +84,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const lampToggle = document.getElementById('lampToggle');
     const lampHero = document.querySelector('.lamp-hero');
 
-    if (lampToggle && lampHero) {
+        if (lampToggle && lampHero) {
+        const lampCord = document.querySelector('.lamp-cord');
+
         lampToggle.addEventListener('click', () => {
+            if (lampCord) {
+                lampCord.classList.remove('is-pulling');
+                void lampCord.offsetWidth; // fuerza reinicio de la animación si se hace clic varias veces seguidas
+                lampCord.classList.add('is-pulling');
+            }
+
             const isLit = lampHero.classList.toggle('is-lit');
             lampToggle.setAttribute('aria-pressed', String(isLit));
         });

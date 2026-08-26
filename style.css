@@ -131,19 +131,19 @@ section, footer {
 .lamp-glow {
     fill: url(#lampGlow);
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease 0.15s;
 }
 
 .lamp-shade {
     fill: var(--black-soft);
     stroke: var(--gray);
     stroke-width: 2.5;
-    transition: fill 0.4s ease, stroke 0.4s ease;
+    transition: fill 0.4s ease 0.15s, stroke 0.4s ease 0.15s;
 }
 
 .lamp-bulb {
     fill: var(--gray-line);
-    transition: fill 0.4s ease;
+    transition: fill 0.4s ease 0.15s;
 }
 
 .lamp-string,
@@ -168,7 +168,21 @@ section, footer {
 .lamp-pull {
     fill: var(--red);
 }
+.lamp-cord {
+    transform-box: fill-box;
+    transform-origin: top center;
+}
 
+.lamp-cord.is-pulling {
+    animation: cordPull 0.55s ease;
+}
+
+@keyframes cordPull {
+    0% { transform: scaleY(1); }
+    35% { transform: scaleY(1.22); }
+    65% { transform: scaleY(0.94); }
+    100% { transform: scaleY(1); }
+}
 /* Estado encendido */
 .lamp-hero.is-lit .lamp-glow {
     opacity: 1;
@@ -264,6 +278,9 @@ section, footer {
         animation: none;
     }
 }
+    .lamp-cord.is-pulling {
+        animation: none;
+    }
 
 
 .rec {
