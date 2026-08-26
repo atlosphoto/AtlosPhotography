@@ -1,7 +1,41 @@
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
+/* --- Scroll suave con Lenis, sincronizado con GSAP ScrollTrigger --- */
+const lenis = new Lenis({
+    duration: 1.4,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+});
+
+lenis.on('scroll', ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+});
+
+gsap.ticker.lagSmoothing(0);
 document.addEventListener('DOMContentLoaded', () => {
-
+    /* --- Enlaces del menú usando el scroll suave de Lenis --- */
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            const targetId = link.getAttribute('href');
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+                event.preventDefault();
+                lenis.scrollTo(targetEl, { offset: -70 });
+            }
+        });
+    });
+        /* --- Limpieza del shutter preloader tras la animación --- */
+    const shutter = document.querySelector('.shutter');
+    if (shutter) {
+        shutter.addEventListener('animationend', (event) => {
+            if (event.target.classList.contains('shutter-panel')) {
+                shutter.style.display = 'none';
+            }
+        });
+    }
     /* --- Animación de entrada: servicios --- */
     const frames = gsap.utils.toArray('.frame');
     frames.forEach((frame, index) => {

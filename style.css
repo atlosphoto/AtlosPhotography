@@ -12,7 +12,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
 }
 
 body {
@@ -20,6 +20,61 @@ body {
     background-color: var(--black);
     color: var(--white);
     font-family: 'Inter', sans-serif;
+}
+
+/* ---- SHUTTER PRELOADER ---- */
+
+.shutter {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    pointer-events: none;
+}
+
+.shutter-panel {
+    flex: 1;
+    background-color: var(--black);
+}
+
+.shutter-left {
+    animation: shutterOpenLeft 1s cubic-bezier(0.76, 0, 0.24, 1) 0.35s forwards;
+}
+
+.shutter-right {
+    animation: shutterOpenRight 1s cubic-bezier(0.76, 0, 0.24, 1) 0.35s forwards;
+}
+
+@keyframes shutterOpenLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes shutterOpenRight {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+}
+
+.shutter-mark {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: shutterMarkFade 0.5s ease 0.15s forwards;
+}
+
+.shutter-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--red);
+    animation: pulse 0.9s ease-in-out infinite;
+}
+
+@keyframes shutterMarkFade {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 a {
@@ -637,7 +692,10 @@ section, footer {
     html {
         scroll-behavior: auto;
     }
-    .rec-dot, .scroll-cue span, .whatsapp-ring {
+    .shutter {
+        display: none;
+    }
+    .rec-dot, .scroll-cue span, .whatsapp-ring, .lamp-cord.is-pulling {
         animation: none;
     }
 }
